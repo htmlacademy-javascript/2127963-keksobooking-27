@@ -1,19 +1,3 @@
-function getRandomInteger(min, max) {
-  if (min < 0 || max < 0 || max <= min) {
-    return NaN;
-  }
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function getRandomFloat(min, max, decimalDigits) {
-  if (min < 0 || max < 0 || max <= min) {
-    return NaN;
-  }
-  return Number((Math.random() * (max - min + 1) + min).toFixed(decimalDigits));
-}
-
 const authorPhotos = [];
 for (let i = 0; i < 10; i++) {
   if (i + 1 < 10) {
@@ -82,6 +66,24 @@ const getRandomArray = function (array) {
   return array.slice(0, getRandomInteger(1, array.length - 1));
 };
 
+const advertismentNumber = 10;
+
+function getRandomInteger(min, max) {
+  if (min < 0 || max < 0 || max <= min) {
+    return NaN;
+  }
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function getRandomFloat(min, max, decimalDigits) {
+  if (min < 0 || max < 0 || max <= min) {
+    return NaN;
+  }
+  return Number((Math.random() * (max - min + 1) + min).toFixed(decimalDigits));
+}
+
 const getAdvertisment = function () {
   const location = {
     lat: getRandomFloat(latMin, latMax, 5),
@@ -109,4 +111,8 @@ const getAdvertisment = function () {
   };
 };
 
-getAdvertisment();
+const createSimilarAdvertisments = function () {
+  return Array.from({length: advertismentNumber}, getAdvertisment);
+};
+
+createSimilarAdvertisments();
