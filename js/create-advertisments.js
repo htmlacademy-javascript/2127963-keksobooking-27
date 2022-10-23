@@ -1,7 +1,9 @@
-import {getRandomElement} from './util.js';
-import {getRandomArray} from './util.js';
-import {getRandomInteger} from './util.js';
-import {getRandomFloat} from './util.js';
+import {
+  getRandomElement,
+  getRandomArray,
+  getRandomInteger,
+  getRandomFloat
+} from './util.js';
 
 const ADVERTISMENT_NUMBER = 10;
 const DIGIT_NUMBER = 5;

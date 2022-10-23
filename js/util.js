@@ -26,7 +26,4 @@ function getRandomFloat(min, max, decimalDigits) {
   return Number((Math.random() * (max - min + 1) + min).toFixed(decimalDigits));
 }
 
-export {getRandomElement};
-export {getRandomArray};
-export {getRandomInteger};
-export {getRandomFloat};
+export {getRandomElement, getRandomArray, getRandomInteger, getRandomFloat};
