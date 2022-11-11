@@ -1,5 +1,31 @@
 const adForm = document.querySelector('.ad-form');
+const mapForm = document.querySelector('.map__filters');
 
+
+const disablePage = () => {
+  adForm.classList.add('ad-form--disabled');
+  const fieldsets = adForm.querySelectorAll('fieldset');
+  fieldsets.forEach((fieldset) => {
+    fieldset.disabled = true;
+  });
+  mapForm.classList.add('map__filters--disabled');
+  for (const child of mapForm.children) {
+    child.disabled = true;
+  }
+};
+
+const activatePage = () => {
+  adForm.classList.remove('ad-form--disabled');
+  const fieldsets = adForm.querySelectorAll('fieldset');
+  fieldsets.forEach((fieldset) => {
+    fieldset.disabled = false;
+  });
+
+  mapForm.classList.remove('map__filters--disabled');
+  for (const child of mapForm.children) {
+    child.disabled = false;
+  }
+};
 
 const pristine = new Pristine(adForm, {
   classTo: 'ad-form__element',
@@ -54,3 +80,6 @@ adForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   pristine.validate();
 });
+
+disablePage();
+activatePage();
