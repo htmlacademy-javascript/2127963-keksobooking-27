@@ -88,6 +88,7 @@ function onPriceChange () {
 function onTypeChange () {
   pristine.validate(priceField);
   pristine.validate(typeField);
+  priceField.placeholder = minPrices[typeField.value];
 }
 
 pristine.addValidator(priceField, validatePrice, getMinPriceErrorMessage);
