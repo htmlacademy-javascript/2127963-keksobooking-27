@@ -1,7 +1,12 @@
-const adForm = document.querySelector('.ad-form');
 const mapForm = document.querySelector('.map__filters');
+const adForm = document.querySelector('.ad-form');
 
+const roomsField = adForm.querySelector('[name="rooms"]');
+const capacityField = adForm.querySelector('[name="capacity"]');
+const checkinTime = adForm.querySelector('[name="timein"]');
+const checkoutTime = adForm.querySelector('[name="timeout"]');
 
+// Деактивация страницы
 const disablePage = () => {
   adForm.classList.add('ad-form--disabled');
   const fieldsets = adForm.querySelectorAll('fieldset');
@@ -14,6 +19,7 @@ const disablePage = () => {
   }
 };
 
+//Активация страницы
 const activatePage = () => {
   adForm.classList.remove('ad-form--disabled');
   const fieldsets = adForm.querySelectorAll('fieldset');
@@ -27,6 +33,7 @@ const activatePage = () => {
   }
 };
 
+// Валидация Pristine
 const pristine = new Pristine(adForm, {
   classTo: 'ad-form__element',
   errorClass: 'ad-form__element--invalid',
@@ -39,9 +46,6 @@ true
 );
 
 // Валидация количества комнат и гостей
-const roomsField = adForm.querySelector('[name="rooms"]');
-const capacityField = adForm.querySelector('[name="capacity"]');
-
 const roomsOption = {
   '1': ['1'],
   '2': ['1', '2'],
@@ -75,6 +79,19 @@ pristine.addValidator(capacityField, validateCapacity, getCapacityErrorMessage);
 
 roomsField.addEventListener('change', onRoomsChange);
 capacityField.addEventListener('change', onCapacityChange);
+
+// Синхронизация времени заезда и выезда
+const onTimeInChange = () => {
+  checkoutTime.value = checkinTime.value;
+};
+
+const onTimeOutChange = () => {
+  checkinTime.value = checkoutTime.value;
+};
+
+checkinTime.addEventListener('change', onTimeInChange);
+checkoutTime.addEventListener('change', onTimeOutChange);
+
 
 adForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
