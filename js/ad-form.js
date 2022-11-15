@@ -71,6 +71,29 @@ true
 );
 
 //Валидация минимльной цены в зависимости от типа жилья
+const sliderElement = document.querySelector('.ad-form__slider');
+
+const MAX_SLIDER_VALUE = 100000;
+noUiSlider.create(sliderElement, {
+  range: {
+    min: minPrice[typeField.value],
+    max: MAX_SLIDER_VALUE,
+  },
+  start: minPrice[typeField.value],
+  connect: 'lower',
+  format: {
+    to: function (value) {
+      return Number(value.toFixed(0));
+    },
+    from: function (value) {
+      return parseFloat(value);
+    },
+  },
+});
+
+sliderElement.noUiSlider.on('update', () => {
+  priceField.value = sliderElement.noUiSlider.get();
+});
 
 function validatePrice () {
   return priceField.value >= minPrice[typeField.value];
@@ -83,6 +106,9 @@ function getMinPriceErrorMessage () {
 function onPriceChange () {
   pristine.validate(priceField);
   pristine.validate(typeField);
+  sliderElement.noUiSlider.updateOptions({
+    start: priceField.value,
+  });
 }
 
 function onTypeChange () {
@@ -135,7 +161,6 @@ const onTimeOutChange = () => {
 
 checkinTimeField.addEventListener('change', onTimeInChange);
 checkoutTimeField.addEventListener('change', onTimeOutChange);
-
 
 adForm.addEventListener('submit', (evt) => {
   evt.preventDefault();

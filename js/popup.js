@@ -1,5 +1,3 @@
-//import {createAdvertisments} from './create-advertisments.js';
-
 const accomodationTypes = {
   flat: 'Квартира',
   bungalow: 'Бунгало',
@@ -8,7 +6,6 @@ const accomodationTypes = {
   hotel: 'Отель',
 };
 
-//const mapCardBlock = document.querySelector('.map__canvas');
 const cardTemplate = document.querySelector('#card')
   .content
   .querySelector('.popup');
@@ -117,5 +114,4 @@ const getCard = ({author, offer}) => {
   return cardElement;
 };
 
-//mapCardBlock.append(getCard(createAdvertisments()[0]));
 export { getCard };
