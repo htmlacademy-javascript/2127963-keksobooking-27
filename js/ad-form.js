@@ -8,7 +8,7 @@ const capacityField = adForm.querySelector('[name="capacity"]');
 const checkinTimeField = adForm.querySelector('[name="timein"]');
 const checkoutTimeField = adForm.querySelector('[name="timeout"]');
 
-const minPrices = {
+const minPrice = {
   'bungalow': 0,
   'flat': 1000,
   'hotel': 3000,
@@ -73,11 +73,11 @@ true
 //Валидация минимльной цены в зависимости от типа жилья
 
 function validatePrice () {
-  return priceField.value >= minPrices[typeField.value];
+  return priceField.value >= minPrice[typeField.value];
 }
 
 function getMinPriceErrorMessage () {
-  return `Минимальная цена для типа "${accomodationTypes[typeField.value]}" - ${minPrices[typeField.value]} рублей`;
+  return `Минимальная цена для типа "${accomodationTypes[typeField.value]}" - ${minPrice[typeField.value]} рублей`;
 }
 
 function onPriceChange () {
@@ -88,7 +88,7 @@ function onPriceChange () {
 function onTypeChange () {
   pristine.validate(priceField);
   pristine.validate(typeField);
-  priceField.placeholder = minPrices[typeField.value];
+  priceField.placeholder = minPrice[typeField.value];
 }
 
 pristine.addValidator(priceField, validatePrice, getMinPriceErrorMessage);
@@ -142,5 +142,4 @@ adForm.addEventListener('submit', (evt) => {
   pristine.validate();
 });
 
-disablePage();
-activatePage();
+export { activatePage, disablePage };
