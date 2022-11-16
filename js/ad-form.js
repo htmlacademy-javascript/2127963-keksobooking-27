@@ -1,6 +1,9 @@
+const MAX_SLIDER_VALUE = 100000;
+
 const mapForm = document.querySelector('.map__filters');
 const adForm = document.querySelector('.ad-form');
 
+const fieldsets = adForm.querySelectorAll('fieldset');
 const priceField = adForm.querySelector('[name="price"]');
 const typeField = adForm.querySelector('[name="type"]');
 const roomsField = adForm.querySelector('[name="rooms"]');
@@ -34,7 +37,7 @@ const roomsOption = {
 // Деактивация страницы
 const disablePage = () => {
   adForm.classList.add('ad-form--disabled');
-  const fieldsets = adForm.querySelectorAll('fieldset');
+
   fieldsets.forEach((fieldset) => {
     fieldset.disabled = true;
   });
@@ -47,7 +50,7 @@ const disablePage = () => {
 //Активация страницы
 const activatePage = () => {
   adForm.classList.remove('ad-form--disabled');
-  const fieldsets = adForm.querySelectorAll('fieldset');
+
   fieldsets.forEach((fieldset) => {
     fieldset.disabled = false;
   });
@@ -73,10 +76,9 @@ true
 //Валидация минимльной цены в зависимости от типа жилья
 const sliderElement = document.querySelector('.ad-form__slider');
 
-const MAX_SLIDER_VALUE = 100000;
 noUiSlider.create(sliderElement, {
   range: {
-    min: minPrice[typeField.value],
+    min: 0,
     max: MAX_SLIDER_VALUE,
   },
   start: minPrice[typeField.value],
