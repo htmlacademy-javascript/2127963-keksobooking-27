@@ -1,6 +1,8 @@
 import { getCard } from './popup.js';
 
 const OFFERS_NUMBER = 10;
+const MAP_SCALE = 10;
+const DIGIT_NUMBER = 5;
 
 const addressField = document.querySelector('#address');
 const resetButton = document.querySelector('.ad-form__reset');
@@ -32,7 +34,7 @@ const mainPinMarker = L.marker(
 );
 
 const initMap = (coordinate) => {
-  map.setView(coordinate, 10);
+  map.setView(coordinate, MAP_SCALE);
 
   L.tileLayer(
     'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -75,13 +77,13 @@ const setOnMainPinMove = (cb) => {
 };
 
 const setCoordinates = (coordinates) => {
-  addressField.value = `${(coordinates.lat).toFixed(5)}, ${(coordinates.lng).toFixed(5)}`;
+  addressField.value = `${(coordinates.lat).toFixed(DIGIT_NUMBER)}, ${(coordinates.lng).toFixed(DIGIT_NUMBER)}`;
 };
 
 const resetPage = (coordinates) => {resetButton.addEventListener('click', () => {
   mainPinMarker.setLatLng(coordinates);
 
-  map.setView(coordinates, 10);
+  map.setView(coordinates, MAP_SCALE);
 });
 };
 
