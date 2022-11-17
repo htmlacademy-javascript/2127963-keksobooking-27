@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css"></link>
+  <link rel="stylesheet" href="vendor/nouislider/nouislider.css"></link>
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <title>Кексобукинг</title>
 </head>
@@ -96,8 +98,7 @@
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--wide">
           <label class="ad-form__label" for="address">Адрес (координаты)</label>
-          <input id="address" name="address" type="text" required
-          data-pristine-required-message="Обязательное поле">
+          <input id="address" name="address" type="text" required readonly data-pristine-required-message="Обязательное поле">
         </fieldset>
         <fieldset class="ad-form__element">
           <label class="ad-form__label" for="type">Тип жилья</label>
@@ -116,7 +117,6 @@
           max="100000"
           data-pristine-required-message="Обязательное поле"
           data-pristine-max-message="Максимальная цена 100000 руб.">
-          >
           <div class="ad-form__slider"></div>
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--time">
@@ -239,6 +239,8 @@
       <button type="button" class="error__button">Попробовать снова</button>
     </div>
   </template>
+  <script src="vendor/leaflet/leaflet.js"></script>
+  <script src="vendor/nouislider/nouislider.js"></script>
   <script src="vendor/pristine/pristine.min.js"></script>
   <script src="js/main.js" type="module"></script>
 
