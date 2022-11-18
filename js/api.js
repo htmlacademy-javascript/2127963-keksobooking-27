@@ -11,7 +11,7 @@ const getData = (onSuccess) => {
     });
 };
 
-/*const sendData = (onSuccess, onFail, body) => {
+const sendData = (onSuccess, onFail, body) => {
 
   fetch(
     'https://27.javascript.pages.academy/keksobooking',
@@ -30,7 +30,7 @@ const getData = (onSuccess) => {
     .catch(() => {
       onFail();
     });
-};*/
+};
 
-//export {getData, sendData};
-export {getData};
+export { getData, sendData };
+//export {getData};

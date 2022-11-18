@@ -1,32 +1,50 @@
-const ALERT_SHOW_TIME = 5000;
-/*const isEscapeKey = (evt) => evt.key === 'Escape';
+import { isEscapeKey } from './util.js';
 
-const errorTemplate = document.querySelector('#error')
-  .content
-  .querySelector('.error');
+const ALERT_SHOW_TIME = 5000;
+
 const successTemplate = document.querySelector('#success')
   .content
   .querySelector('.success');
 
-const renderMessage = (template) => {
-  const modalTemplate = template.cloneNode(true);
-  document.body.append(modalTemplate);
-  const closeModal = () => {
-    modalTemplate.remove();
+const errorTemplate = document.querySelector('#error')
+  .content
+  .querySelector('.error');
+
+const errorButton = errorTemplate.querySelector('.error_button');
+
+const showSuccessMessage = () => {
+  const successMessage = successTemplate.cloneNode(true);
+  document.body.append(successMessage);
+  const closeSuccessMessage = () => {
+    successMessage.remove();
     document.removeEventListener('keydown', onEscKeydown);
   };
   function onEscKeydown () {
     if (isEscapeKey) {
-      closeModal();
+      closeSuccessMessage();
     }
   }
-  modalTemplate.addEventListener('click', closeModal);
+  successMessage.addEventListener('click', closeSuccessMessage);
   document.addEventListener('keydown', onEscKeydown);
 };
 
-const showErrorMessage = () => renderMessage(errorTemplate);
-const showSuccessMessage = () => renderMessage(successTemplate);
-*/
+const showErrorMessage = () => {
+  const errorMessage = errorTemplate.cloneNode(true);
+  document.body.append(errorMessage);
+  const closeErrorMessage = () => {
+    errorMessage.remove();
+    document.removeEventListener('keydown', onEscKeydown);
+  };
+  function onEscKeydown () {
+    if (isEscapeKey) {
+      closeErrorMessage();
+    }
+  }
+  errorMessage.addEventListener('click', closeErrorMessage);
+  errorButton.addEventListener('click', closeErrorMessage);
+  document.addEventListener('keydown', onEscKeydown);
+};
+
 
 const showAlert = (message) => {
   const alertContainer = document.createElement('div');
@@ -49,5 +67,5 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
-//export {showAlert, showErrorMessage, showSuccessMessage};
-export {showAlert};
+export {showAlert, showErrorMessage, showSuccessMessage };
+//export {showAlert};

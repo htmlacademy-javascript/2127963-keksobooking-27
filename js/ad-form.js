@@ -1,6 +1,6 @@
-/*import { sendData } from './api';
+import { sendData } from './api';
 import { showErrorMessage, showSuccessMessage } from './messages';
-import { resetPage } from './map';*/
+
 
 const MAX_SLIDER_VALUE = 100000;
 
@@ -14,7 +14,7 @@ const roomsField = adForm.querySelector('[name="rooms"]');
 const capacityField = adForm.querySelector('[name="capacity"]');
 const checkinTimeField = adForm.querySelector('[name="timein"]');
 const checkoutTimeField = adForm.querySelector('[name="timeout"]');
-//const submitButton = adForm.querySelector('.ad-form__submit');
+const submitButton = adForm.querySelector('.ad-form__submit');
 
 const minPrice = {
   'bungalow': 0,
@@ -169,7 +169,7 @@ const onTimeOutChange = () => {
 checkinTimeField.addEventListener('change', onTimeInChange);
 checkoutTimeField.addEventListener('change', onTimeOutChange);
 
-/*const blockSubmitButton = () => {
+const blockSubmitButton = () => {
   submitButton.setAttribute('disabled', true);
   submitButton.textContent = 'Публикация...';
 };
@@ -177,21 +177,20 @@ checkoutTimeField.addEventListener('change', onTimeOutChange);
 const unblockSubmitButton = () => {
   submitButton.removeAttribute('disabled');
   submitButton.textContent = 'Опубликовать';
-};*/
+};
 
 
 adForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  pristine.validate();
 
-  /*const isValid = pristine.validate();
+  const isValid = pristine.validate();
   if (isValid) {
     blockSubmitButton();
     sendData (
       () => {
         showSuccessMessage();
         unblockSubmitButton();
-        resetPage();
+
       },
       () => {
         showErrorMessage();
@@ -199,7 +198,7 @@ adForm.addEventListener('submit', (evt) => {
       },
       new FormData(evt.target),
     );
-  }*/
+  }
 });
 
 export { activatePage, disablePage };

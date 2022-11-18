@@ -26,4 +26,7 @@ function getRandomFloat(min, max, decimalDigits) {
   return Number((Math.random() * (max - min + 1) + min).toFixed(decimalDigits));
 }
 
-export {getRandomElement, getRandomArray, getRandomInteger, getRandomFloat};
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+
+export { getRandomElement, getRandomArray, getRandomInteger, getRandomFloat, isEscapeKey };
