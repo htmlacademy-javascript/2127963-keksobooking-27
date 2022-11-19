@@ -67,5 +67,5 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
-export {showAlert, showErrorMessage, showSuccessMessage };
+export { showAlert, showErrorMessage, showSuccessMessage };
 //export {showAlert};

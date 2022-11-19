@@ -1,5 +1,6 @@
-import { sendData } from './api';
-import { showErrorMessage, showSuccessMessage } from './messages';
+import { sendData } from './api.js';
+import { showErrorMessage, showSuccessMessage } from './messages.js';
+import { resetMap } from './map.js';
 
 
 const MAX_SLIDER_VALUE = 100000;
@@ -179,26 +180,42 @@ const unblockSubmitButton = () => {
   submitButton.textContent = 'Опубликовать';
 };
 
+// Сброс формы
 
-adForm.addEventListener('submit', (evt) => {
-  evt.preventDefault();
+const resetForm = () => {
+  adForm.reset();
+};
 
-  const isValid = pristine.validate();
-  if (isValid) {
-    blockSubmitButton();
-    sendData (
-      () => {
-        showSuccessMessage();
-        unblockSubmitButton();
+const resetSlider = () => {
+  sliderElement.noUiSlider.reset();
+};
 
-      },
-      () => {
-        showErrorMessage();
-        unblockSubmitButton();
-      },
-      new FormData(evt.target),
-    );
-  }
-});
 
-export { activatePage, disablePage };
+// Отправка формы
+
+const onSubmitButton = (coordinates) => {
+  adForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    const isValid = pristine.validate();
+    if (isValid) {
+      blockSubmitButton();
+      sendData (
+        () => {
+          showSuccessMessage();
+          unblockSubmitButton();
+          resetForm();
+          resetMap(coordinates);
+          resetSlider();
+        },
+
+        () => {
+          showErrorMessage();
+          unblockSubmitButton();
+        },
+        new FormData(evt.target),
+      );
+    }
+  });
+};
+
+export { activatePage, disablePage, resetForm, resetSlider, onSubmitButton };
