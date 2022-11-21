@@ -190,6 +190,12 @@ const resetSlider = () => {
   sliderElement.noUiSlider.reset();
 };
 
+const resetPage = (coordinates) => {
+  resetForm();
+  resetMap(coordinates);
+  resetSlider();
+  setCoordinates(coordinates);
+};
 
 // Отправка формы
 
@@ -203,9 +209,7 @@ const onSubmitButton = (coordinates) => {
         () => {
           showSuccessMessage();
           unblockSubmitButton();
-          resetForm();
-          resetMap(coordinates);
-          resetSlider();
+          resetPage(coordinates);
         },
 
         () => {
@@ -216,13 +220,6 @@ const onSubmitButton = (coordinates) => {
       );
     }
   });
-};
-
-const resetPage = (coordinates) => {
-  resetForm();
-  resetMap(coordinates);
-  resetSlider();
-  setCoordinates(coordinates);
 };
 
 export { activatePage, disablePage, resetForm, resetSlider, onSubmitButton, resetPage };

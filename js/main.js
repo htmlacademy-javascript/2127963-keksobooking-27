@@ -1,7 +1,7 @@
 import {getData} from './api.js';
 import './popup.js';
-import { activatePage, disablePage, /*resetForm, resetSlider,*/ onSubmitButton, resetPage } from './ad-form.js';
-import { initMap, setOnMapLoad, setOnMainPinMove, setPins, setCoordinates/*, resetMap*/ } from './map.js';
+import { activatePage, disablePage, onSubmitButton, resetPage } from './ad-form.js';
+import { initMap, setOnMapLoad, setOnMainPinMove, setPins, setCoordinates } from './map.js';
 
 
 const START_COORDINATE = {
@@ -24,16 +24,9 @@ setOnMapLoad(() => {
 
 initMap(START_COORDINATE);
 
-/*const resetPage = (coordinates) => {
-  resetForm();
-  resetMap(coordinates);
-  resetSlider();
-  setCoordinates(coordinates);
-};*/
-
-resetButton.addEventListener('click', () => {
+resetButton.addEventListener('click', (evt) => {
+  evt.preventDefault();
   resetPage(START_COORDINATE);
-  //setCoordinates(START_COORDINATE);
 });
 
 onSubmitButton(START_COORDINATE);
