@@ -30,4 +30,3 @@ const isEscapeKey = (evt) => evt.key === 'Escape';
 
 
 export { getRandomElement, getRandomArray, getRandomInteger, getRandomFloat, isEscapeKey };
-//export { getRandomElement, getRandomArray, getRandomInteger, getRandomFloat};

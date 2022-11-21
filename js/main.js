@@ -24,14 +24,16 @@ setOnMapLoad(() => {
 
 initMap(START_COORDINATE);
 
-const resetPage = () => {
+const resetPage = (coordinates) => {
   resetForm();
-  resetMap(START_COORDINATE);
+  resetMap(coordinates);
   resetSlider();
+  setCoordinates(coordinates);
 };
 
 resetButton.addEventListener('click', () => {
   resetPage(START_COORDINATE);
+  //setCoordinates(START_COORDINATE);
 });
 
 onSubmitButton(START_COORDINATE);
