@@ -1,6 +1,6 @@
 import { sendData } from './api.js';
 import { showErrorMessage, showSuccessMessage } from './messages.js';
-import { resetMap } from './map.js';
+import { resetMap, setCoordinates } from './map.js';
 
 
 const MAX_SLIDER_VALUE = 100000;
@@ -190,6 +190,12 @@ const resetSlider = () => {
   sliderElement.noUiSlider.reset();
 };
 
+const resetPage = (coordinates) => {
+  resetForm();
+  resetMap(coordinates);
+  resetSlider();
+  setCoordinates(coordinates);
+};
 
 // Отправка формы
 
@@ -203,9 +209,7 @@ const onSubmitButton = (coordinates) => {
         () => {
           showSuccessMessage();
           unblockSubmitButton();
-          resetForm();
-          resetMap(coordinates);
-          resetSlider();
+          resetPage(coordinates);
         },
 
         () => {
@@ -218,4 +222,4 @@ const onSubmitButton = (coordinates) => {
   });
 };
 
-export { activatePage, disablePage, resetForm, resetSlider, onSubmitButton };
+export { activatePage, disablePage, resetForm, resetSlider, onSubmitButton, resetPage };

@@ -68,4 +68,3 @@ const showAlert = (message) => {
 };
 
 export { showAlert, showErrorMessage, showSuccessMessage };
-//export {showAlert};
