@@ -5,7 +5,6 @@ const MAP_SCALE = 10;
 const DIGIT_NUMBER = 5;
 
 const addressField = document.querySelector('#address');
-const resetButton = document.querySelector('.ad-form__reset');
 
 const map = L.map('map-canvas');
 const markerGroup = L.layerGroup().addTo(map);
@@ -33,8 +32,8 @@ const mainPinMarker = L.marker(
   },
 );
 
-const initMap = (coordinate) => {
-  map.setView(coordinate, MAP_SCALE);
+const initMap = (coordinates) => {
+  map.setView(coordinates, MAP_SCALE);
 
   L.tileLayer(
     'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -43,7 +42,7 @@ const initMap = (coordinate) => {
     },
   ).addTo(map);
 
-  mainPinMarker.setLatLng(coordinate);
+  mainPinMarker.setLatLng(coordinates);
 
   mainPinMarker.addTo(map);
 };
@@ -80,11 +79,10 @@ const setCoordinates = (coordinates) => {
   addressField.value = `${(coordinates.lat).toFixed(DIGIT_NUMBER)}, ${(coordinates.lng).toFixed(DIGIT_NUMBER)}`;
 };
 
-const resetPage = (coordinates) => {resetButton.addEventListener('click', () => {
+const resetMap = (coordinates) => {
   mainPinMarker.setLatLng(coordinates);
 
   map.setView(coordinates, MAP_SCALE);
-});
 };
 
-export { initMap, setOnMapLoad, setOnMainPinMove, setPins, setCoordinates, resetPage};
+export { initMap, setOnMapLoad, setOnMainPinMove, setPins, setCoordinates, resetMap };

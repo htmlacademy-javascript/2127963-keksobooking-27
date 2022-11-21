@@ -1,3 +1,8 @@
+import { sendData } from './api.js';
+import { showErrorMessage, showSuccessMessage } from './messages.js';
+import { resetMap, setCoordinates } from './map.js';
+
+
 const MAX_SLIDER_VALUE = 100000;
 
 const mapForm = document.querySelector('.map__filters');
@@ -10,6 +15,7 @@ const roomsField = adForm.querySelector('[name="rooms"]');
 const capacityField = adForm.querySelector('[name="capacity"]');
 const checkinTimeField = adForm.querySelector('[name="timein"]');
 const checkoutTimeField = adForm.querySelector('[name="timeout"]');
+const submitButton = adForm.querySelector('.ad-form__submit');
 
 const minPrice = {
   'bungalow': 0,
@@ -164,9 +170,56 @@ const onTimeOutChange = () => {
 checkinTimeField.addEventListener('change', onTimeInChange);
 checkoutTimeField.addEventListener('change', onTimeOutChange);
 
-adForm.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  pristine.validate();
-});
+const blockSubmitButton = () => {
+  submitButton.setAttribute('disabled', true);
+  submitButton.textContent = 'Публикация...';
+};
 
-export { activatePage, disablePage };
+const unblockSubmitButton = () => {
+  submitButton.removeAttribute('disabled');
+  submitButton.textContent = 'Опубликовать';
+};
+
+// Сброс формы
+
+const resetForm = () => {
+  adForm.reset();
+};
+
+const resetSlider = () => {
+  sliderElement.noUiSlider.reset();
+};
+
+const resetPage = (coordinates) => {
+  resetForm();
+  resetMap(coordinates);
+  resetSlider();
+  setCoordinates(coordinates);
+};
+
+// Отправка формы
+
+const onSubmitButton = (coordinates) => {
+  adForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    const isValid = pristine.validate();
+    if (isValid) {
+      blockSubmitButton();
+      sendData (
+        () => {
+          showSuccessMessage();
+          unblockSubmitButton();
+          resetPage(coordinates);
+        },
+
+        () => {
+          showErrorMessage();
+          unblockSubmitButton();
+        },
+        new FormData(evt.target),
+      );
+    }
+  });
+};
+
+export { activatePage, disablePage, resetForm, resetSlider, onSubmitButton, resetPage };

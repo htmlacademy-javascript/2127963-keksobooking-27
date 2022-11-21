@@ -1,13 +1,14 @@
-import {createAdvertisments} from './create-advertisments.js';
+import {getData} from './api.js';
 import './popup.js';
-import { activatePage, disablePage} from './ad-form.js';
-import { initMap, setOnMapLoad, setOnMainPinMove, setPins, setCoordinates, resetPage} from './map.js';
+import { activatePage, disablePage, onSubmitButton, resetPage } from './ad-form.js';
+import { initMap, setOnMapLoad, setOnMainPinMove, setPins, setCoordinates } from './map.js';
+
 
 const START_COORDINATE = {
   lat: 35.70611,
   lng: 139.79651,
 };
-const offers = createAdvertisments();
+const resetButton = document.querySelector('.ad-form__reset');
 
 disablePage();
 
@@ -15,9 +16,17 @@ setOnMapLoad(() => {
   setOnMainPinMove(setCoordinates);
   setCoordinates(START_COORDINATE);
   activatePage();
-  setPins(offers);
+  getData((offers) => {
+    setPins(offers);
+  });
 });
+
 
 initMap(START_COORDINATE);
 
-resetPage(START_COORDINATE);
+resetButton.addEventListener('click', (evt) => {
+  evt.preventDefault();
+  resetPage(START_COORDINATE);
+});
+
+onSubmitButton(START_COORDINATE);
