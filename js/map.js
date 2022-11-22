@@ -1,6 +1,6 @@
 import { getCard } from './popup.js';
 
-const OFFERS_NUMBER = 10;
+//const OFFERS_NUMBER = 10;
 const MAP_SCALE = 10;
 const DIGIT_NUMBER = 5;
 
@@ -62,9 +62,14 @@ const createPinMarkers = (offers) => {
   });
 };
 
+/*const setPins = (offers, offersNumber) => {
+  markerGroup.clearLayers();
+  createPinMarkers(offers.slice(0, offersNumber));
+};*/
+
 const setPins = (offers) => {
   markerGroup.clearLayers();
-  createPinMarkers(offers.slice(0, OFFERS_NUMBER));
+  createPinMarkers(offers);
 };
 
 const setOnMapLoad = (cb) => {
