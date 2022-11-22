@@ -4,6 +4,7 @@ import { activatePage, disablePage, onSubmitButton, onResetButton } from './ad-f
 import { initMap, setOnMapLoad, setOnMainPinMove, setPins, setCoordinates } from './map.js';
 import { filterOffers } from './filter.js';
 import { debounce } from './util.js';
+import './avatar.js';
 
 const START_COORDINATE = {
   lat: 35.70611,
