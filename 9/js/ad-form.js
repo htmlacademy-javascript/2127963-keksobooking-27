@@ -1,6 +1,7 @@
 import { sendData } from './api.js';
 import { showErrorMessage, showSuccessMessage } from './messages.js';
 import { resetMap, setCoordinates } from './map.js';
+import { clearPhotos } from './avatar.js';
 
 
 const MAX_SLIDER_VALUE = 100000;
@@ -196,6 +197,7 @@ const resetPage = (coordinates) => {
   resetMap(coordinates);
   resetSlider();
   setCoordinates(coordinates);
+  clearPhotos();
 };
 
 const onResetButton = (coordinates) => {
