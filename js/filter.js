@@ -8,7 +8,7 @@ const typeFilterField = filterElement.querySelector('[name="housing-type"]');
 const priceFilterField = filterElement.querySelector('[name="housing-price"]');
 const roomsFilterField = filterElement.querySelector('[name="housing-rooms"]');
 const guestsFilterField = filterElement.querySelector('[name="housing-guests"]');
-const featuresCheckboxes = filterElement.querySelector('.map__checkbox');
+const featuresCheckboxes = filterElement.querySelectorAll('.map__checkbox');
 
 const filterByType = (offer) => typeFilterField.value === 'any' || offer.offer.type === typeFilterField.value;
 
@@ -68,4 +68,4 @@ const filterOffers = (offers) => {
   return filteredOffers;
 };
 
-export {filterOffers};
+export { filterOffers };
