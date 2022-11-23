@@ -1,6 +1,7 @@
 import { sendData } from './api.js';
 import { showErrorMessage, showSuccessMessage } from './messages.js';
 import { resetMap, setCoordinates } from './map.js';
+import { clearPhotos } from './avatar.js';
 
 
 const MAX_SLIDER_VALUE = 100000;
@@ -16,6 +17,7 @@ const capacityField = adForm.querySelector('[name="capacity"]');
 const checkinTimeField = adForm.querySelector('[name="timein"]');
 const checkoutTimeField = adForm.querySelector('[name="timeout"]');
 const submitButton = adForm.querySelector('.ad-form__submit');
+const resetButton = adForm.querySelector('.ad-form__reset');
 
 const minPrice = {
   'bungalow': 0,
@@ -195,6 +197,14 @@ const resetPage = (coordinates) => {
   resetMap(coordinates);
   resetSlider();
   setCoordinates(coordinates);
+  clearPhotos();
+};
+
+const onResetButton = (coordinates) => {
+  resetButton.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    resetPage(coordinates);
+  });
 };
 
 // Отправка формы
@@ -222,4 +232,4 @@ const onSubmitButton = (coordinates) => {
   });
 };
 
-export { activatePage, disablePage, resetForm, resetSlider, onSubmitButton, resetPage };
+export { activatePage, disablePage, resetForm, resetSlider, onSubmitButton, onResetButton };
