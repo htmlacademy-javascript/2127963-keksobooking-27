@@ -68,4 +68,8 @@ const filterOffers = (offers) => {
   return filteredOffers;
 };
 
-export { filterOffers };
+const resetFilters = () => {
+  filterElement.reset();
+};
+
+export { filterOffers, resetFilters };
