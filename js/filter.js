@@ -1,5 +1,5 @@
 const OFFERS_NUMBER = 10;
-const PRICE_VALUE = {
+const priceValue = {
   min: 10000,
   max: 50000,
 };
@@ -17,11 +17,11 @@ const filterByPrice = (offer) => {
     case 'any':
       return true;
     case 'low':
-      return offer.offer.price <= PRICE_VALUE.min;
+      return offer.offer.price <= priceValue.min;
     case 'middle':
-      return offer.offer.price > PRICE_VALUE.min && offer.offer.price <= PRICE_VALUE.max;
+      return offer.offer.price > priceValue.min && offer.offer.price <= priceValue.max;
     case 'high':
-      return offer.offer.price > PRICE_VALUE.max;
+      return offer.offer.price > priceValue.max;
   }
 };
 

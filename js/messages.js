@@ -10,22 +10,23 @@ const errorTemplate = document.querySelector('#error')
   .content
   .querySelector('.error');
 
-const errorButton = errorTemplate.querySelector('.error_button');
+const errorButton = errorTemplate.querySelector('.error__button');
 
 const showSuccessMessage = () => {
   const successMessage = successTemplate.cloneNode(true);
   document.body.append(successMessage);
   const closeSuccessMessage = () => {
     successMessage.remove();
-    document.removeEventListener('keydown', onEscKeydown);
+    document.removeEventListener('keydown', onDocumentEscKeydown);
   };
-  function onEscKeydown () {
-    if (isEscapeKey) {
+  function onDocumentEscKeydown (evt) {
+    if (isEscapeKey(evt)) {
+      evt.preventDefault();
       closeSuccessMessage();
     }
   }
   successMessage.addEventListener('click', closeSuccessMessage);
-  document.addEventListener('keydown', onEscKeydown);
+  document.addEventListener('keydown', onDocumentEscKeydown);
 };
 
 const showErrorMessage = () => {
@@ -33,16 +34,19 @@ const showErrorMessage = () => {
   document.body.append(errorMessage);
   const closeErrorMessage = () => {
     errorMessage.remove();
-    document.removeEventListener('keydown', onEscKeydown);
+    document.removeEventListener('keydown', onDocumentEscKeydown);
   };
-  function onEscKeydown () {
-    if (isEscapeKey) {
+
+  function onDocumentEscKeydown (evt) {
+    if (isEscapeKey(evt)) {
+      evt.preventDefault();
       closeErrorMessage();
     }
   }
+
   errorMessage.addEventListener('click', closeErrorMessage);
   errorButton.addEventListener('click', closeErrorMessage);
-  document.addEventListener('keydown', onEscKeydown);
+  document.addEventListener('keydown', onDocumentEscKeydown);
 };
 
 

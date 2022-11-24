@@ -1,5 +1,5 @@
 const DEFAULT_AVATAR = 'img/muffin-grey.svg';
-const FILE_TYPES = ['jpg', 'jpeg', 'png'];
+const fileTypes = ['jpg', 'jpeg', 'png'];
 
 const avatarFileChooser = document.querySelector('.ad-form__field input[type=file]');
 const avatarPreview = document.querySelector('.ad-form-header__preview img');
@@ -11,7 +11,7 @@ const photoPreviewContainer = document.querySelector('.ad-form__photo');
 avatarFileChooser.addEventListener('change', () => {
   const avatarFile = avatarFileChooser.files[0];
   const avatarFileName = avatarFile.name.toLowerCase();
-  const matches = FILE_TYPES.some((it) => avatarFileName.endsWith(it));
+  const matches = fileTypes.some((it) => avatarFileName.endsWith(it));
   if (matches) {
     avatarPreview.src = URL.createObjectURL(avatarFile);
   }
@@ -20,7 +20,7 @@ avatarFileChooser.addEventListener('change', () => {
 photoFileChooser.addEventListener('change', () => {
   const roomFile = photoFileChooser.files[0];
   const roomFileName = roomFile.name.toLowerCase();
-  const isMatching = FILE_TYPES.some((it) => roomFileName.endsWith(it));
+  const isMatching = fileTypes.some((it) => roomFileName.endsWith(it));
   if (isMatching) {
     photoPreviewContainer.innerHTML = '';
     const roomPreview = document.createElement('img');

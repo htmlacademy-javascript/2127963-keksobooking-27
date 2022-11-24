@@ -1,4 +1,6 @@
 import { getCard } from './popup.js';
+import { filterOffers } from './filter.js';
+import { getData } from './api.js';
 
 const MAP_SCALE = 10;
 const DIGIT_NUMBER = 5;
@@ -84,4 +86,10 @@ const resetMap = (coordinates) => {
   map.setView(coordinates, MAP_SCALE);
 };
 
-export { initMap, setOnMapLoad, setOnMainPinMove, setPins, setCoordinates, resetMap };
+const resetPins = () => {
+  getData((offers) => {
+    setPins(filterOffers(offers));
+  });
+};
+
+export { initMap, setOnMapLoad, setOnMainPinMove, setPins, setCoordinates, resetMap, resetPins };
