@@ -79,10 +79,11 @@ const getCard = ({author, offer}) => {
     const popupPhoto = popupPhotos.querySelector('.popup__photo');
     popupPhotos.innerHtml = '';
 
-    for (const photo of photos) {
+    photos.forEach((photo) => {
       popupPhoto.src = photo;
       popupPhotos.append(popupPhoto);
-    }
+    });
+
   } else {
     popupPhotos.remove();
   }

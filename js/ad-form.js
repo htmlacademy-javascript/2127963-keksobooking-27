@@ -1,6 +1,6 @@
 import { sendData } from './api.js';
 import { showErrorMessage, showSuccessMessage } from './messages.js';
-import { resetMap, setCoordinates } from './map.js';
+import { resetMap, setCoordinates, resetPins } from './map.js';
 import { clearPhotos } from './avatar.js';
 import { resetFilters } from './filter.js';
 
@@ -174,12 +174,12 @@ checkinTimeField.addEventListener('change', onTimeInChange);
 checkoutTimeField.addEventListener('change', onTimeOutChange);
 
 const blockSubmitButton = () => {
-  submitButton.setAttribute('disabled', true);
+  submitButton.disabled = true;
   submitButton.textContent = 'Публикация...';
 };
 
 const unblockSubmitButton = () => {
-  submitButton.removeAttribute('disabled');
+  submitButton.disabled = false;
   submitButton.textContent = 'Опубликовать';
 };
 
@@ -196,13 +196,14 @@ const resetSlider = () => {
 const resetPage = (coordinates) => {
   resetForm();
   resetMap(coordinates);
+  resetPins();
   resetSlider();
   setCoordinates(coordinates);
   clearPhotos();
   resetFilters();
 };
 
-const onResetButton = (coordinates) => {
+const setAdFormReset = (coordinates) => {
   resetButton.addEventListener('click', (evt) => {
     evt.preventDefault();
     resetPage(coordinates);
@@ -211,7 +212,7 @@ const onResetButton = (coordinates) => {
 
 // Отправка формы
 
-const onSubmitButton = (coordinates) => {
+const setAdFormSubmit = (coordinates) => {
   adForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
     const isValid = pristine.validate();
@@ -234,4 +235,4 @@ const onSubmitButton = (coordinates) => {
   });
 };
 
-export { activatePage, disablePage, resetForm, resetSlider, onSubmitButton, onResetButton };
+export { activatePage, disablePage, resetForm, resetSlider, setAdFormSubmit, setAdFormReset };

@@ -1,23 +1,23 @@
 import { getData } from './api.js';
 import './popup.js';
-import { activatePage, disablePage, onSubmitButton, onResetButton } from './ad-form.js';
+import { activatePage, disablePage, setAdFormSubmit, setAdFormReset } from './ad-form.js';
 import { initMap, setOnMapLoad, setOnMainPinMove, setPins, setCoordinates } from './map.js';
 import { filterOffers } from './filter.js';
 import { debounce } from './util.js';
 import './avatar.js';
 
-const START_COORDINATE = {
+const TIMEOUT_DELAY = 500;
+
+const startCoordinate = {
   lat: 35.70611,
   lng: 139.79651,
 };
-
-const TIMEOUT_DELAY = 500;
 
 disablePage();
 
 setOnMapLoad(() => {
   setOnMainPinMove(setCoordinates);
-  setCoordinates(START_COORDINATE);
+  setCoordinates(startCoordinate);
   activatePage();
   getData((offers) => {
     setPins(filterOffers(offers));
@@ -25,10 +25,10 @@ setOnMapLoad(() => {
 });
 
 
-initMap(START_COORDINATE);
+initMap(startCoordinate);
 
-onResetButton(START_COORDINATE);
-onSubmitButton(START_COORDINATE);
+setAdFormReset(startCoordinate);
+setAdFormSubmit(startCoordinate);
 
 
 const filterElement = document.querySelector('.map__filters');
