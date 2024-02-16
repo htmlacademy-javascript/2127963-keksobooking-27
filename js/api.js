@@ -1,7 +1,7 @@
 import { showAlert } from './messages.js';
 
 const getData = (onSuccess) => {
-  fetch('https://27.javascript.pages.academy/keksobooking/data')
+  fetch('https://27.javascript.htmlacademy.pro/keksobooking/data')
     .then((response) => response.json())
     .then((offers) => {
       onSuccess(offers);
@@ -14,7 +14,7 @@ const getData = (onSuccess) => {
 const sendData = (onSuccess, onFail, body) => {
 
   fetch(
-    'https://27.javascript.pages.academy/keksobooking',
+    'https://27.javascript.htmlacademy.pro/keksobooking',
     {
       method: 'POST',
       body,
